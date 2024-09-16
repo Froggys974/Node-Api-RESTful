@@ -1,1 +1,9 @@
 GET http://localhost:3000/books
+###
+POST http://localhost:3000/api/user/register
+Content-Type: application/json
+
+{
+    "email":"florent@gmail.com",
+    "password":"Froggys_"
+}
