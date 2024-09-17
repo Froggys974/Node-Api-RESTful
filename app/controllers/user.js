@@ -29,10 +29,43 @@ class UserController {
         .json({ message: "An error occurred while registering the user. " + error});
     }
   }
+
+  static async login(req, res) {
+    const { email, password } = req.body;
+
+    try {
+      const user = await User.findOne({ where: { email } });
+
+      if (!user || !bcrypt.compareSync(password, user.password)) {
+        return res.status(401).json({ message: 'Invalid credentials.' });
+      }
+
+      const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+      return res.json({ token });
+    } catch (error) {
+      return res.status(500).json({ message: 'Error logging in.' });
+    }
+  }
   //crud
   static async getAll(req, res) {}
 
-  static async getOneById(req, res) {}
+  static async getOneById(req, res) {
+    const userId = parseInt(req.params.id, 10);
+
+    try {
+      const user = await User.findByPk(userId);
+
+      if (!user) {
+        return res.status(404).json({ message: 'User not found.' });
+      }
+
+      return res.json(user);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'Error retrieving user.' });
+    }
+  }
 
   static async updateOneById(req, res) {}
 
