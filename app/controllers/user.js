@@ -5,13 +5,6 @@ const bcrypt = require("bcrypt");
 class UserController {
   static async register(req, res, next) {
     try {
-      // check if req has props such as email and password
-      if (!(req.body.password && req.body.email)) {
-        return res
-          .status(400)
-          .json({ message: "Email and password are required." });
-      }
-
       // check if the person who wants to subscribe is not already in the db
       const user = await User.findOne({
         where: { email: req.body.email },
@@ -33,7 +26,7 @@ class UserController {
       console.error(error);
       return res
         .status(500)
-        .json({ message: "An error occurred while registering the user." });
+        .json({ message: "An error occurred while registering the user. " + error});
     }
   }
   //crud
