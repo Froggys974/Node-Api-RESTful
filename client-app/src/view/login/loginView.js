@@ -39,10 +39,10 @@ const LoginView = ({ onLoginSuccess }) => {
   ];
 
   return (
-    <div className="auth-container">
+    <div className="login-container">
       <h1>Login</h1>
       {error && <p className="error">{error}</p>}
-      <Form onSubmit={handleLogin} fields={fields} buttonText="Login" />
+      <Form className="app-form" onSubmit={handleLogin} fields={fields} buttonText="Login" />
       {loading && <p>Loading...</p>}
     </div>
   );
