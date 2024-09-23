@@ -4,6 +4,17 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "email":"florent@gmail.com",
+    "email":"florent2@gmail.com",
     "password":"Froggys_"
 }
+###
+POST http://localhost:3000/api/user/login
+Content-Type: application/json
+
+{
+    "email":"florent2@gmail.com",
+    "password":"Froggys_"
+}
+###
+GET http://localhost:3000/api/user/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZsb3JlbnQyQGdtYWlsLmNvbSIsImlhdCI6MTcyNjkzNTY2NCwiZXhwIjoxNzI2OTM5MjY0fQ.qd4Zc3huZjTcFoKfGlJksWlA0Ok9oYUb5qwetGc4s5g

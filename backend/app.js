@@ -23,10 +23,9 @@ app.use(express.urlencoded(
 ))
 app.use(express.json());
 
-
+app.use("/api/user", userRoutes)
 app.set("host", HOST)
 app.set("port", PORT)
-app.use("/api/user", userRoutes)
 
 
 module.exports = app;
